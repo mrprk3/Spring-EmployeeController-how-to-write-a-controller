@@ -1,0 +1,66 @@
+EmployeeController.java
+
+package com.example.springrestapi.controller;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.stereotype.Controller;
+//import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RequestMethod;
+//import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.springrestapi.model.Employee;
+
+//@Controller
+@RestController  // @Controller +  @ResponseBody
+public class EmployeeController {
+	
+	//@RequestMapping(value="/employees", method=RequestMethod.GET)
+	//@ResponseBody
+	@GetMapping("/employees")
+	public String getEmployees() {
+		return "employee ś page";
+	}
+	
+	
+	@GetMapping("/employees/{id}")
+	public String getEmployee(@PathVariable("id") Long id) {
+		return "Fteching the employee details for the id "+id;
+	}
+	
+	@PostMapping("/employees")
+	public String saveEmployee(@RequestBody Employee employee) {
+		return "Saving the employee details to the database :"+employee;
+		
+	}
+	
+	/*
+	 
+	@PostMapping("/employees")
+	public Employee saveEmployee(@RequestBody Employee employee) {
+		
+	Employee e = new Employee();
+	e.setName(employee.getName());
+	e.setAge(employee.getAge());
+	e.setLocation(employee.getLocation());
+	e.setEmail(employee.getEmail());
+	e.setDepartment(employee.getDepartment());
+	
+	return e;
+	}
+	
+	*/
+	
+	@DeleteMapping("/employees")
+	public String deleteEmployee(@RequestParam("id") Long id) {
+		return "Deleting the employee details for the employee "+id;
+	}
+	
+	
+
+}
